@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jezero AI Quiz — Test Your AI, Cloud &amp; Data Knowledge</title>
+  <meta name="description" content="A timed quiz game from Jezero AI (CACI) to test your knowledge of AI, cloud architecture, and data governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Persistent Header -->
+  <header class="site-header">
+    <div class="site-header-inner">
+      <div class="site-logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="32" height="32" rx="6" fill="#1E1869"/>
+          <path d="M8 10h16M8 16h16M8 22h10" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h1 class="site-title">Jezero AI Quiz</h1>
+    </div>
+  </header>
+
+  <main id="main-content" class="container" role="main">
+
+    <!-- Landing Screen -->
+    <section id="screen-landing" class="screen card" aria-label="Welcome">
+      <div class="landing-header">
+        <p class="brand-parent">Part of CACI</p>
+      </div>
+
+      <p class="landing-description">
+        Test your knowledge of AI, cloud architecture, and data governance. 
+        30 questions, 5 minutes on the clock. How well do you know the landscape?
+      </p>
+
+      <div class="input-group">
+        <label for="player-name">Your name</label>
+        <input type="text" id="player-name" placeholder="Enter your name" autocomplete="name" maxlength="40">
+      </div>
+
+      <button id="btn-start" class="btn btn-primary" disabled>Start Quiz</button>
+    </section>
+
+    <!-- Quiz Screen -->
+    <section id="screen-quiz" class="screen card" aria-label="Quiz">
+      <div class="quiz-header">
+        <span id="question-counter" class="question-counter">Question 1 of 30</span>
+        <div class="quiz-meta">
+          <span id="score-tracker" class="score-tracker" aria-live="polite" aria-atomic="true">Score: 0</span>
+          <div class="timer" aria-live="polite" aria-atomic="true">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 9v4l2.5 2.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M9 2h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span id="timer-display">5:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timer-bar-container" role="timer" aria-label="Time remaining">
+        <div id="timer-bar" class="timer-bar" style="width: 100%"></div>
+      </div>
+
+      <div class="progress-bar-container" role="progressbar" aria-label="Quiz progress" aria-valuemin="0" aria-valuemax="100">
+        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+      </div>
+
+      <h2 id="question-text" class="question-text" tabindex="-1"></h2>
+
+      <ul id="options-list" class="options-list" role="list" aria-label="Answer options"></ul>
+
+      <div id="explanation" class="explanation" hidden aria-live="polite">
+        <p class="explanation-label">Explanation</p>
+        <p id="explanation-text"></p>
+      </div>
+
+      <div class="next-btn-container">
+        <button id="btn-next" class="btn btn-secondary" hidden>Next Question</button>
+      </div>
+    </section>
+
+    <!-- Results Screen -->
+    <section id="screen-results" class="screen card" aria-label="Results">
+      <div class="results-header">
+        <h2>Quiz Complete</h2>
+        <div class="score-display">
+          <span id="score-number" class="score-number">0</span>
+          <span id="score-total" class="score-total">/ 30</span>
+        </div>
+        <p id="score-percentage" class="score-percentage"></p>
+        <p id="score-message" class="score-message"></p>
+      </div>
+
+      <div class="btn-group">
+        <button id="btn-share" class="btn btn-outline">Share Score</button>
+        <button id="btn-restart" class="btn btn-secondary">Play Again</button>
+      </div>
+
+      <div class="leaderboard">
+        <h3>Leaderboard</h3>
+        <ul id="leaderboard-list" class="leaderboard-list" aria-label="Top scores"></ul>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <footer class="site-footer">
+    <p>Made in <a href="https://kiro.dev" target="_blank" rel="noopener noreferrer">Kiro</a></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

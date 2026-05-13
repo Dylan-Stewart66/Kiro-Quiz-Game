@@ -1,0 +1,717 @@
+[
+  {
+    "question": "In AWS Landing Zone Accelerator (LZA), what is the primary purpose of the 'Security' organizational unit?",
+    "options": [
+      "To host production application workloads with enhanced monitoring",
+      "To contain accounts for centralised logging, auditing, and security tooling",
+      "To manage billing and cost allocation across the organisation",
+      "To provide sandbox environments for developer experimentation"
+    ],
+    "correct": 1,
+    "explanation": "The Security OU in LZA houses accounts dedicated to centralised security services — such as the Log Archive account (for CloudTrail, Config logs) and the Security Audit account (for cross-account security tooling like GuardDuty and Security Hub)."
+  },
+  {
+    "question": "What mechanism does AWS Landing Zone Accelerator use to deploy and manage resources across multiple accounts?",
+    "options": [
+      "Manual CloudFormation stack deployments triggered by administrators",
+      "A pipeline-driven approach using AWS CodePipeline and CloudFormation StackSets",
+      "Direct API calls from a central Lambda function on a schedule",
+      "Terraform Cloud workspaces with remote state management"
+    ],
+    "correct": 1,
+    "explanation": "LZA uses a CodePipeline-based deployment engine that processes configuration files and deploys resources via CloudFormation StackSets across the organisation's accounts and regions in a controlled, repeatable manner."
+  },
+  {
+    "question": "Which AWS service does LZA use to enforce preventive guardrails across organizational units?",
+    "options": [
+      "AWS Config Rules with automatic remediation",
+      "Service Control Policies (SCPs) attached to OUs in AWS Organizations",
+      "IAM permission boundaries applied to all roles",
+      "AWS Shield Advanced with custom protection groups"
+    ],
+    "correct": 1,
+    "explanation": "SCPs are the primary mechanism for preventive guardrails in LZA. They set maximum permission boundaries at the OU or account level, preventing actions regardless of IAM policies — such as blocking regions or denying certain service usage."
+  },
+  {
+    "question": "In Amazon Bedrock, what is a 'foundation model'?",
+    "options": [
+      "A model you train entirely from scratch using your own data on Bedrock infrastructure",
+      "A large pre-trained model from providers like Anthropic, Meta, or Amazon that you access via API",
+      "A lightweight model that only handles text classification tasks",
+      "A model architecture template you must customise before any inference is possible"
+    ],
+    "correct": 1,
+    "explanation": "Foundation models in Bedrock are large, pre-trained models from various providers (Anthropic Claude, Meta Llama, Amazon Titan, etc.) that you can use immediately via API for tasks like generation, summarisation, and embedding — without managing infrastructure."
+  },
+  {
+    "question": "What is the purpose of Amazon Bedrock Guardrails?",
+    "options": [
+      "To automatically scale model inference endpoints based on traffic",
+      "To define policies that filter harmful content, block denied topics, and validate model inputs and outputs",
+      "To manage billing thresholds and prevent cost overruns on model usage",
+      "To encrypt all data in transit between the client and the Bedrock API"
+    ],
+    "correct": 1,
+    "explanation": "Bedrock Guardrails let you configure content filters (hate, violence, sexual content), denied topic policies, word filters, sensitive information filters (PII), and contextual grounding checks — applied to both inputs and outputs of model invocations."
+  },
+  {
+    "question": "Which of the following is NOT a content filter category available in Amazon Bedrock Guardrails?",
+    "options": [
+      "Hate and discrimination",
+      "Sexual content",
+      "Political opinions and electoral advice",
+      "Violence and threats"
+    ],
+    "correct": 2,
+    "explanation": "Bedrock Guardrails provides content filters for hate, insults, sexual content, violence, and misconduct. Political opinions are not a built-in filter category — though you could address them via custom denied topic policies."
+  },
+  {
+    "question": "How does Amazon Bedrock Knowledge Bases implement RAG (Retrieval-Augmented Generation)?",
+    "options": [
+      "By fine-tuning the foundation model on your documents during a training job",
+      "By indexing your documents into a vector store and retrieving relevant chunks at query time to augment the prompt",
+      "By caching previous model responses and returning them for similar queries",
+      "By connecting directly to your relational database and running SQL queries"
+    ],
+    "correct": 1,
+    "explanation": "Bedrock Knowledge Bases ingests your documents, chunks them, generates embeddings, and stores them in a vector database. At query time, it retrieves semantically relevant chunks and includes them in the prompt context for grounded responses."
+  },
+  {
+    "question": "What is the Model Context Protocol (MCP)?",
+    "options": [
+      "An AWS-proprietary protocol for encrypting model inference requests",
+      "An open standard for connecting AI models to external data sources and tools through a unified interface",
+      "A compression algorithm that reduces the size of model context windows",
+      "A monitoring protocol for tracking model performance metrics across regions"
+    ],
+    "correct": 1,
+    "explanation": "MCP is an open protocol (originated by Anthropic) that standardises how AI applications connect to external tools, data sources, and services. It provides a consistent interface for models to access capabilities beyond their training data."
+  },
+  {
+    "question": "In MCP architecture, what role does an 'MCP Server' play?",
+    "options": [
+      "It hosts and serves the AI model weights for inference",
+      "It exposes specific tools, resources, or data sources that AI models can interact with",
+      "It manages user authentication and session tokens",
+      "It stores conversation history and manages context windows"
+    ],
+    "correct": 1,
+    "explanation": "An MCP Server wraps a specific capability (database access, API integration, file system operations, etc.) and exposes it through the standardised MCP protocol. The AI model's host application connects to these servers to extend the model's capabilities."
+  },
+  {
+    "question": "What is the primary advantage of an LLM Gateway pattern for enterprise AI deployments?",
+    "options": [
+      "It guarantees zero-latency responses from all connected models",
+      "It provides a single control plane for routing, governance, cost management, and model abstraction across teams",
+      "It eliminates the need for any authentication on AI endpoints",
+      "It automatically fine-tunes models based on user feedback"
+    ],
+    "correct": 1,
+    "explanation": "An LLM Gateway centralises AI access — enabling consistent policy enforcement, usage tracking, cost allocation, rate limiting, and the ability to swap underlying models without changing application code across the organisation."
+  },
+  {
+    "question": "In an LLM Gateway architecture, what is 'model routing'?",
+    "options": [
+      "Physically moving model weights between data centres for redundancy",
+      "Directing requests to different models based on criteria like task type, cost, latency requirements, or content classification",
+      "Converting model outputs from one format to another",
+      "Distributing training data across multiple GPU clusters"
+    ],
+    "correct": 1,
+    "explanation": "Model routing in a gateway intelligently directs requests to the most appropriate model — for example, sending simple queries to a cheaper/faster model and complex reasoning tasks to a more capable one, optimising cost and performance."
+  },
+  {
+    "question": "What is the 'blast radius' concept in cloud security architecture?",
+    "options": [
+      "The geographic area affected by a data centre outage",
+      "The scope of potential damage if a single component, account, or credential is compromised",
+      "The number of users impacted by a service degradation",
+      "The time it takes for a security patch to propagate across all instances"
+    ],
+    "correct": 1,
+    "explanation": "Blast radius refers to how much damage can result from a single failure or breach. Multi-account strategies, network segmentation, and least-privilege access all work to minimise blast radius by containing the impact of any single compromise."
+  },
+  {
+    "question": "Which vector database option is natively supported by Amazon Bedrock Knowledge Bases?",
+    "options": [
+      "MongoDB Atlas with vector search",
+      "Amazon OpenSearch Serverless with vector engine",
+      "Elasticsearch with dense vector fields",
+      "Redis with vector similarity search"
+    ],
+    "correct": 1,
+    "explanation": "Bedrock Knowledge Bases natively supports Amazon OpenSearch Serverless (with its vector engine), Amazon Aurora PostgreSQL (with pgvector), Pinecone, and Redis Enterprise Cloud as vector store options for RAG implementations."
+  },
+  {
+    "question": "What is 'contextual grounding' in Amazon Bedrock Guardrails?",
+    "options": [
+      "Ensuring the model only responds in the language of the input query",
+      "A check that validates model responses are factually supported by the provided source material and relevant to the query",
+      "Connecting the model to a live internet search for real-time fact checking",
+      "Restricting the model to only discuss topics within its training data"
+    ],
+    "correct": 1,
+    "explanation": "Contextual grounding checks in Bedrock Guardrails assess whether the model's response is grounded in (supported by) the reference source provided and relevant to the user's query — helping detect hallucinations in RAG applications."
+  },
+  {
+    "question": "In AWS Organizations, what happens when an SCP denies an action?",
+    "options": [
+      "The action is logged but still allowed to proceed",
+      "The action is blocked regardless of any IAM policies that might allow it",
+      "The user receives a warning but can override it with MFA",
+      "The action is queued for manual approval by an administrator"
+    ],
+    "correct": 1,
+    "explanation": "SCPs set hard permission boundaries. If an SCP denies an action, it cannot be performed in that account — even if the IAM policy explicitly allows it. SCPs are evaluated before IAM policies and cannot be overridden within the account."
+  },
+  {
+    "question": "What is the difference between a 'preventive' and a 'detective' guardrail in AWS?",
+    "options": [
+      "Preventive guardrails are cheaper to implement than detective guardrails",
+      "Preventive guardrails block non-compliant actions before they occur; detective guardrails identify non-compliance after it happens",
+      "Preventive guardrails only work in production accounts; detective guardrails work everywhere",
+      "Preventive guardrails use machine learning; detective guardrails use rule-based logic"
+    ],
+    "correct": 1,
+    "explanation": "Preventive guardrails (like SCPs) stop actions from happening in the first place. Detective guardrails (like AWS Config Rules) monitor for non-compliant resources and alert or remediate after the fact. Both are essential for defence in depth."
+  },
+  {
+    "question": "What is Amazon Bedrock's approach to data privacy for model inputs?",
+    "options": [
+      "All inputs are stored indefinitely for model improvement purposes",
+      "Inputs and outputs are not used to train or improve the base foundation models and are not shared with model providers",
+      "Data is anonymised and contributed to a shared training pool across all customers",
+      "Inputs are retained for 90 days for debugging purposes before deletion"
+    ],
+    "correct": 1,
+    "explanation": "Amazon Bedrock does not use customer inputs or outputs to train or improve foundation models. Your data stays within your AWS account boundary, is encrypted, and is not accessible to model providers — a key differentiator for enterprise adoption."
+  },
+  {
+    "question": "In a multi-account LZA deployment, what is the purpose of the 'Network' account?",
+    "options": [
+      "To host all application databases with network-optimised storage",
+      "To centralise shared networking infrastructure like Transit Gateway, DNS, firewalls, and VPN connections",
+      "To monitor network bandwidth usage and generate billing reports",
+      "To provide internet access to all accounts via a shared NAT gateway only"
+    ],
+    "correct": 1,
+    "explanation": "The Network account in LZA centralises shared networking services — Transit Gateway for inter-account connectivity, Route 53 for DNS, Network Firewall for inspection, and VPN/Direct Connect for hybrid connectivity."
+  },
+  {
+    "question": "What is 'chunking' in the context of building a RAG system?",
+    "options": [
+      "Splitting large model weights into smaller files for faster download",
+      "Breaking documents into smaller, semantically meaningful segments for embedding and retrieval",
+      "Batching multiple user queries together for efficient processing",
+      "Compressing vector embeddings to reduce storage costs"
+    ],
+    "correct": 1,
+    "explanation": "Chunking divides source documents into smaller pieces (by sentences, paragraphs, or semantic boundaries) before generating embeddings. Chunk size affects retrieval quality — too large loses precision, too small loses context."
+  },
+  {
+    "question": "What is the purpose of an 'embedding model' in a RAG pipeline?",
+    "options": [
+      "To generate the final natural language response shown to the user",
+      "To convert text into numerical vector representations that capture semantic meaning",
+      "To classify documents into predefined categories for filing",
+      "To translate documents between languages before storage"
+    ],
+    "correct": 1,
+    "explanation": "Embedding models transform text into dense vectors in a high-dimensional space where semantically similar content is positioned close together. This enables retrieval based on meaning rather than exact keyword matching."
+  },
+  {
+    "question": "Which AWS service provides centralised, immutable log storage in an LZA architecture?",
+    "options": [
+      "Amazon CloudWatch Logs in each individual account",
+      "Amazon S3 in the Log Archive account with Object Lock enabled",
+      "AWS CloudTrail Lake in the management account",
+      "Amazon DynamoDB with point-in-time recovery"
+    ],
+    "correct": 1,
+    "explanation": "LZA directs logs (CloudTrail, Config, VPC Flow Logs, etc.) to a dedicated Log Archive account's S3 buckets. Object Lock ensures immutability — preventing deletion or modification even by administrators — critical for compliance and forensics."
+  },
+  {
+    "question": "What is 'prompt injection' and why is it relevant to LLM Gateway security?",
+    "options": [
+      "A technique for optimising prompt performance by injecting few-shot examples",
+      "An attack where malicious input attempts to override system instructions or extract sensitive information from the model",
+      "A method for injecting prompts into a queue for batch processing",
+      "A way to inject additional context from a database into the prompt template"
+    ],
+    "correct": 1,
+    "explanation": "Prompt injection is a security threat where crafted user inputs try to manipulate the model into ignoring its instructions, revealing system prompts, or performing unintended actions. Gateways must implement input validation and output filtering to mitigate this."
+  },
+  {
+    "question": "In Amazon Bedrock, what does 'model customisation' through continued pre-training achieve?",
+    "options": [
+      "It changes the model's architecture to add more parameters",
+      "It exposes the model to domain-specific unlabelled data to improve its understanding of specialised terminology and concepts",
+      "It reduces the model's response latency by removing unused capabilities",
+      "It converts the model from one provider's format to another"
+    ],
+    "correct": 1,
+    "explanation": "Continued pre-training in Bedrock feeds domain-specific unlabelled data into a foundation model, teaching it specialised vocabulary, concepts, and patterns from your domain — without needing labelled examples or changing the model architecture."
+  },
+  {
+    "question": "What is AWS Transit Gateway's role in a Landing Zone architecture?",
+    "options": [
+      "It provides serverless compute for network processing functions",
+      "It acts as a central hub connecting multiple VPCs and on-premises networks, simplifying network topology",
+      "It accelerates content delivery by caching at edge locations",
+      "It manages DNS resolution across all accounts in the organisation"
+    ],
+    "correct": 1,
+    "explanation": "Transit Gateway is a regional network hub that connects VPCs, VPNs, and Direct Connect gateways through a single point. This avoids complex VPC peering meshes and enables centralised network inspection and routing control."
+  },
+  {
+    "question": "What is the 'temperature' parameter when invoking a foundation model?",
+    "options": [
+      "The GPU thermal threshold that triggers automatic scaling",
+      "A value that controls randomness in the model's output — lower values produce more deterministic responses, higher values increase creativity",
+      "The rate at which the model processes tokens per second",
+      "A measure of how much compute resource the request will consume"
+    ],
+    "correct": 1,
+    "explanation": "Temperature (typically 0-1) controls output randomness. At 0, the model picks the most likely token every time (deterministic). At higher values, it samples more broadly, producing varied and creative — but potentially less accurate — responses."
+  },
+  {
+    "question": "What is the purpose of VPC endpoints in a secure AWS architecture?",
+    "options": [
+      "To expose internal services to the public internet securely",
+      "To allow private connectivity to AWS services without traffic traversing the public internet",
+      "To load balance traffic across multiple availability zones",
+      "To encrypt data at rest within VPC subnets"
+    ],
+    "correct": 1,
+    "explanation": "VPC endpoints (Interface and Gateway types) enable private connections from your VPC to AWS services. Traffic stays on the AWS network backbone rather than going over the internet — improving security and often reducing data transfer costs."
+  },
+  {
+    "question": "In an LLM Gateway, what is 'token-based rate limiting'?",
+    "options": [
+      "Limiting the number of authentication tokens issued per hour",
+      "Controlling consumption by tracking and capping the number of input/output tokens processed per team, user, or application",
+      "Restricting the maximum context window size available to each model",
+      "Throttling requests based on the physical token hardware device used for MFA"
+    ],
+    "correct": 1,
+    "explanation": "Token-based rate limiting tracks actual token consumption (not just request count) to fairly allocate capacity and control costs. This is more accurate than request-based limiting since a single request can consume vastly different token amounts."
+  },
+  {
+    "question": "What is AWS Control Tower's relationship to Landing Zone Accelerator?",
+    "options": [
+      "They are competing products — you must choose one or the other",
+      "Control Tower provides the foundational multi-account governance, and LZA extends it with additional enterprise-grade configurations and customisations",
+      "LZA replaces Control Tower entirely with its own governance engine",
+      "Control Tower is only for small organisations; LZA is the enterprise version"
+    ],
+    "correct": 1,
+    "explanation": "LZA builds on top of AWS Control Tower. Control Tower provides the base multi-account setup with guardrails, while LZA adds extensive customisation — network architecture, security configurations, and compliance controls beyond what Control Tower offers alone."
+  },
+  {
+    "question": "What is 'semantic search' and how does it differ from keyword search?",
+    "options": [
+      "Semantic search is faster because it uses indexed keywords in a hash table",
+      "Semantic search understands meaning and intent, returning relevant results even when exact keywords don't match",
+      "Semantic search only works with structured data in relational databases",
+      "Semantic search requires the user to specify the exact field to search within"
+    ],
+    "correct": 1,
+    "explanation": "Semantic search uses embeddings to understand the meaning behind queries and documents. A search for 'vehicle' can find documents about 'cars' and 'automobiles' — something keyword search would miss entirely."
+  },
+  {
+    "question": "What is the purpose of Amazon Bedrock Agents?",
+    "options": [
+      "To monitor and alert on Bedrock API usage and costs",
+      "To enable foundation models to dynamically orchestrate multi-step tasks by planning, invoking APIs, and accessing knowledge bases",
+      "To manage the deployment and versioning of custom models",
+      "To provide a visual interface for building prompt templates"
+    ],
+    "correct": 1,
+    "explanation": "Bedrock Agents allow foundation models to break down user requests into steps, determine which actions to take, call APIs (via action groups), query knowledge bases, and orchestrate complex workflows — all autonomously based on the user's natural language input."
+  },
+  {
+    "question": "In MCP, what is the difference between 'tools' and 'resources'?",
+    "options": [
+      "Tools are free to use; resources require a paid subscription",
+      "Tools represent actions the model can perform (with side effects), while resources represent data the model can read (typically read-only)",
+      "Tools run on the client side; resources run on the server side",
+      "Tools are synchronous; resources are always asynchronous"
+    ],
+    "correct": 1,
+    "explanation": "In MCP, tools are callable functions that perform actions (sending emails, creating records, running queries), while resources are data sources the model can read (files, database records, API responses) — similar to the GET vs POST distinction in REST."
+  },
+  {
+    "question": "What is 'model inference' in the context of AI systems?",
+    "options": [
+      "The process of training a model on new data to improve its accuracy",
+      "The process of using a trained model to generate predictions or outputs from new inputs",
+      "The process of evaluating a model's architecture for potential improvements",
+      "The process of converting a model from one framework to another"
+    ],
+    "correct": 1,
+    "explanation": "Inference is the production use of a trained model — feeding it new inputs and getting outputs (predictions, generated text, classifications). It's distinct from training, which is the learning phase. Most operational costs in AI come from inference."
+  },
+  {
+    "question": "What is AWS PrivateLink and when would you use it?",
+    "options": [
+      "A VPN service for connecting on-premises networks to AWS",
+      "A service that provides private connectivity between VPCs, AWS services, and on-premises applications without exposing traffic to the internet",
+      "An encryption service for data at rest in S3 buckets",
+      "A private DNS service that resolves internal hostnames only"
+    ],
+    "correct": 1,
+    "explanation": "PrivateLink creates private endpoints in your VPC that connect to services (AWS or third-party) over the AWS network. Traffic never touches the internet, reducing exposure and meeting compliance requirements for sensitive workloads."
+  },
+  {
+    "question": "What challenge does 'model drift' present in production AI systems?",
+    "options": [
+      "The model's physical hosting location changes without notification",
+      "Model performance degrades over time as real-world data patterns diverge from training data",
+      "The model's API endpoint URL changes between versions",
+      "The model starts consuming more memory due to cache accumulation"
+    ],
+    "correct": 1,
+    "explanation": "Model drift occurs when the statistical properties of real-world inputs change over time, causing a model trained on historical data to become less accurate. Continuous monitoring and periodic retraining or evaluation are essential to detect and address drift."
+  },
+  {
+    "question": "In a secure LZA deployment, what is the purpose of AWS Network Firewall?",
+    "options": [
+      "To protect individual EC2 instances from DDoS attacks",
+      "To provide stateful inspection, intrusion prevention, and URL filtering for traffic flowing through centralised network inspection points",
+      "To encrypt all traffic between availability zones within a VPC",
+      "To block all inbound traffic from the internet by default"
+    ],
+    "correct": 1,
+    "explanation": "AWS Network Firewall provides deep packet inspection, intrusion detection/prevention (IDS/IPS), and domain/URL filtering at the VPC level. In LZA, it's typically deployed in the Network account's inspection VPC to examine all inter-VPC and internet-bound traffic."
+  },
+  {
+    "question": "What is the 'top-p' (nucleus sampling) parameter in model inference?",
+    "options": [
+      "The percentage of training data used for validation during fine-tuning",
+      "A parameter that limits token selection to the smallest set of tokens whose cumulative probability exceeds the threshold p",
+      "The maximum number of tokens the model will generate in a response",
+      "The priority level assigned to a request in the inference queue"
+    ],
+    "correct": 1,
+    "explanation": "Top-p sampling considers only the smallest set of tokens whose probabilities sum to at least p (e.g., 0.9). This dynamically adjusts the candidate pool — using fewer options when the model is confident and more when it's uncertain."
+  },
+  {
+    "question": "What is the purpose of AWS CloudTrail in a landing zone?",
+    "options": [
+      "To optimise the performance of cloud applications",
+      "To record API calls and account activity across all AWS accounts for auditing, compliance, and security investigation",
+      "To manage the deployment of CloudFormation stacks",
+      "To provide real-time metrics on resource utilisation"
+    ],
+    "correct": 1,
+    "explanation": "CloudTrail logs every API call made in your AWS accounts — who did what, when, and from where. In LZA, an organisation trail sends all logs to the centralised Log Archive account, providing a complete audit history for security and compliance."
+  },
+  {
+    "question": "What is 'few-shot prompting' in the context of LLMs?",
+    "options": [
+      "Training a model with very few data points to reduce costs",
+      "Providing a small number of examples in the prompt to demonstrate the desired output format or behaviour",
+      "Limiting the model to generate only a few tokens in response",
+      "Running inference with reduced precision to save compute"
+    ],
+    "correct": 1,
+    "explanation": "Few-shot prompting includes examples of input-output pairs in the prompt itself. The model uses these examples to understand the pattern, format, or task — without any actual training. It's a powerful technique for guiding model behaviour at inference time."
+  },
+  {
+    "question": "In Amazon Bedrock, what is a 'model invocation log'?",
+    "options": [
+      "A record of all model training jobs and their hyperparameters",
+      "A detailed log capturing the full input prompt, model output, metadata, and token usage for each API call",
+      "A changelog of model version updates published by the provider",
+      "A performance benchmark comparing different models on standard tasks"
+    ],
+    "correct": 1,
+    "explanation": "Model invocation logging in Bedrock captures complete request/response data — including prompts, completions, token counts, latency, and metadata. Logs can be sent to S3 or CloudWatch for auditing, debugging, and compliance purposes."
+  },
+  {
+    "question": "What is the difference between 'on-demand' and 'provisioned throughput' in Amazon Bedrock?",
+    "options": [
+      "On-demand is for testing only; provisioned is for production",
+      "On-demand charges per token with no commitment; provisioned reserves dedicated capacity for consistent performance at a committed price",
+      "On-demand supports all models; provisioned only supports Amazon Titan",
+      "On-demand has higher quality outputs; provisioned trades quality for speed"
+    ],
+    "correct": 1,
+    "explanation": "On-demand pricing is pay-per-token with no commitment — good for variable workloads. Provisioned Throughput reserves dedicated model capacity, guaranteeing consistent latency and throughput for predictable, high-volume workloads at a committed hourly rate."
+  },
+  {
+    "question": "What is the role of AWS Security Hub in a landing zone architecture?",
+    "options": [
+      "To provide a VPN connection between on-premises and AWS",
+      "To aggregate security findings from multiple AWS services and third-party tools into a centralised dashboard with compliance scoring",
+      "To manage encryption keys across all accounts",
+      "To deploy security patches to EC2 instances automatically"
+    ],
+    "correct": 1,
+    "explanation": "Security Hub aggregates findings from GuardDuty, Inspector, Macie, Config, and third-party tools into a single pane. It runs automated compliance checks against frameworks (CIS, PCI-DSS) and provides a security posture score across the organisation."
+  },
+  {
+    "question": "What is 'chain-of-thought' prompting?",
+    "options": [
+      "Connecting multiple LLMs in sequence where each model's output feeds the next",
+      "Instructing the model to show its reasoning step-by-step before providing a final answer, improving accuracy on complex tasks",
+      "A technique for chaining multiple API calls to build a conversation history",
+      "Linking multiple knowledge base documents together for comprehensive retrieval"
+    ],
+    "correct": 1,
+    "explanation": "Chain-of-thought prompting asks the model to reason through a problem step by step. This significantly improves performance on tasks requiring logic, maths, or multi-step reasoning — by making the model's intermediate thinking explicit."
+  },
+  {
+    "question": "In an LLM Gateway, what is 'semantic caching'?",
+    "options": [
+      "Caching model weights in GPU memory for faster inference",
+      "Storing responses for semantically similar queries so that near-duplicate questions can be answered from cache rather than invoking the model again",
+      "Caching DNS lookups for model endpoint resolution",
+      "Pre-computing embeddings for all possible user queries"
+    ],
+    "correct": 1,
+    "explanation": "Semantic caching uses embeddings to identify when a new query is semantically similar to a previously answered one. If the similarity exceeds a threshold, the cached response is returned — reducing latency, cost, and model load significantly."
+  },
+  {
+    "question": "What is AWS Config's role in maintaining compliance in a landing zone?",
+    "options": [
+      "It provisions new AWS accounts automatically when requested",
+      "It continuously evaluates resource configurations against defined rules and records configuration changes over time",
+      "It manages the deployment pipeline for application code",
+      "It provides cost optimisation recommendations for underutilised resources"
+    ],
+    "correct": 1,
+    "explanation": "AWS Config records the configuration state of resources and evaluates them against rules (managed or custom). It provides a configuration timeline, detects drift from desired state, and can trigger automatic remediation — essential for continuous compliance."
+  },
+  {
+    "question": "What is the purpose of 'action groups' in Amazon Bedrock Agents?",
+    "options": [
+      "To group IAM users who can invoke the agent",
+      "To define the set of APIs and functions that an agent can call to perform tasks on behalf of the user",
+      "To batch multiple agent invocations for cost efficiency",
+      "To categorise agent responses into different output formats"
+    ],
+    "correct": 1,
+    "explanation": "Action groups define what an agent can do — each group contains an API schema (OpenAPI) or Lambda function that the agent can invoke. The agent decides which action group to call based on the user's request and its reasoning about how to fulfil it."
+  },
+  {
+    "question": "What is 'data residency' and why does it matter for AI workloads?",
+    "options": [
+      "The speed at which data can be accessed from storage",
+      "The requirement that data must be stored and processed within specific geographic boundaries to comply with regulations",
+      "The amount of storage space data occupies on disk",
+      "The duration for which data must be retained before deletion"
+    ],
+    "correct": 1,
+    "explanation": "Data residency requirements mandate that certain data (especially personal or classified data) must remain within specific countries or regions. For AI workloads, this affects where models can be invoked, where prompts are processed, and where outputs are stored."
+  },
+  {
+    "question": "What is the difference between 'system prompts' and 'user prompts' in LLM interactions?",
+    "options": [
+      "System prompts are written in code; user prompts are in natural language",
+      "System prompts set the model's behaviour, role, and constraints; user prompts contain the actual request or question from the end user",
+      "System prompts are optional; user prompts are required for every request",
+      "System prompts are processed first and then deleted; user prompts are retained in context"
+    ],
+    "correct": 1,
+    "explanation": "System prompts establish the model's persona, rules, and boundaries (e.g., 'You are a helpful assistant that only discusses cloud topics'). User prompts are the actual queries. The model weighs both, but system prompts typically take precedence for behavioural constraints."
+  },
+  {
+    "question": "What is AWS GuardDuty?",
+    "options": [
+      "A web application firewall for protecting HTTP endpoints",
+      "A threat detection service that continuously monitors for malicious activity and unauthorised behaviour using ML and threat intelligence",
+      "A secrets management service for storing API keys and passwords",
+      "A compliance reporting tool for generating audit documentation"
+    ],
+    "correct": 1,
+    "explanation": "GuardDuty analyses CloudTrail logs, VPC Flow Logs, and DNS logs using machine learning and threat intelligence to detect suspicious activity — like unusual API calls, cryptocurrency mining, compromised credentials, or data exfiltration attempts."
+  },
+  {
+    "question": "In the context of AI governance, what is 'model card'?",
+    "options": [
+      "A physical access card required to enter the data centre hosting the model",
+      "A standardised document that describes a model's intended use, limitations, training data, evaluation results, and ethical considerations",
+      "A credit card linked to the model's billing account",
+      "A configuration file that defines the model's hyperparameters"
+    ],
+    "correct": 1,
+    "explanation": "Model cards are transparency documents that accompany AI models. They describe what the model does, how it was trained, its known limitations, evaluation metrics, intended use cases, and potential biases — enabling informed decisions about model deployment."
+  },
+  {
+    "question": "What is the purpose of Amazon Bedrock's 'converse' API?",
+    "options": [
+      "To convert speech to text for voice-based AI interactions",
+      "To provide a unified, model-agnostic interface for multi-turn conversations across different foundation models",
+      "To enable two AI models to communicate with each other directly",
+      "To translate conversations between different languages in real time"
+    ],
+    "correct": 1,
+    "explanation": "The Converse API provides a consistent interface for multi-turn conversations regardless of which foundation model you're using. It handles message formatting differences between providers, making it easier to switch models without changing application code."
+  },
+  {
+    "question": "What is 'responsible AI' in the context of enterprise deployments?",
+    "options": [
+      "AI systems that automatically fix their own bugs",
+      "A framework ensuring AI is developed and used in ways that are fair, transparent, accountable, and aligned with human values",
+      "AI that only operates during business hours to reduce costs",
+      "A certification that guarantees AI outputs are always correct"
+    ],
+    "correct": 1,
+    "explanation": "Responsible AI encompasses practices like bias testing, explainability, privacy protection, safety guardrails, and human oversight. It's about building AI systems that organisations and users can trust — not just technically capable ones."
+  },
+  {
+    "question": "What is the purpose of AWS KMS (Key Management Service) in a landing zone?",
+    "options": [
+      "To manage SSH keys for EC2 instance access",
+      "To create, manage, and control cryptographic keys used to encrypt data across AWS services with centralised policy and audit",
+      "To store application configuration parameters securely",
+      "To generate one-time passwords for multi-factor authentication"
+    ],
+    "correct": 1,
+    "explanation": "KMS provides centralised key management with full audit trails via CloudTrail. In LZA, KMS keys encrypt data at rest across services (S3, EBS, RDS, etc.) with key policies controlling which accounts and roles can use each key."
+  },
+  {
+    "question": "What is 'model evaluation' in Amazon Bedrock?",
+    "options": [
+      "A pricing calculator that estimates model inference costs",
+      "A capability to assess and compare foundation models on quality metrics like accuracy, robustness, and toxicity using your own datasets or built-in benchmarks",
+      "A tool for visualising model architecture and parameter counts",
+      "A service that monitors model uptime and availability"
+    ],
+    "correct": 1,
+    "explanation": "Bedrock Model Evaluation lets you compare models using automatic metrics (accuracy, ROUGE, BERTScore) or human evaluation workflows. You can use built-in datasets or your own, helping you select the right model for your specific use case."
+  },
+  {
+    "question": "In cloud networking, what is a 'transit VPC' pattern?",
+    "options": [
+      "A temporary VPC created during migration and deleted afterwards",
+      "A hub VPC that routes traffic between multiple spoke VPCs and external networks, acting as a central routing point",
+      "A VPC that only exists in a single availability zone for cost savings",
+      "A VPC dedicated to running CI/CD pipelines"
+    ],
+    "correct": 1,
+    "explanation": "The transit VPC (now largely replaced by Transit Gateway) acts as a network hub. Spoke VPCs connect to it, and all inter-VPC traffic routes through the hub — enabling centralised inspection, shared services, and simplified connectivity management."
+  },
+  {
+    "question": "What is 'PII detection' in the context of AI guardrails?",
+    "options": [
+      "Detecting when a model's performance indicators drop below threshold",
+      "Automatically identifying and optionally redacting personally identifiable information (names, addresses, phone numbers, etc.) in model inputs or outputs",
+      "Detecting when a user's session has been inactive for too long",
+      "Identifying which model provider's intellectual property is in the training data"
+    ],
+    "correct": 1,
+    "explanation": "PII detection in guardrails scans for sensitive data like names, email addresses, phone numbers, credit card numbers, and other identifiers. It can block requests containing PII or redact it from responses — critical for privacy compliance."
+  },
+  {
+    "question": "What is the 'Well-Architected Framework' and how does it relate to LZA?",
+    "options": [
+      "A certification programme for cloud architects",
+      "A set of best practices across six pillars (operational excellence, security, reliability, performance, cost, sustainability) that LZA implements by default",
+      "A visual diagramming tool for designing cloud architectures",
+      "A compliance standard required by all cloud providers"
+    ],
+    "correct": 1,
+    "explanation": "The AWS Well-Architected Framework provides architectural best practices across six pillars. LZA implements many of these by default — security controls, multi-AZ networking, logging, encryption — giving organisations a well-architected foundation from day one."
+  },
+  {
+    "question": "What is 'token counting' important for in LLM applications?",
+    "options": [
+      "It determines the number of users who can access the model simultaneously",
+      "It affects cost (billing is per-token), context window limits, and response length constraints",
+      "It measures the model's accuracy on benchmark tests",
+      "It tracks how many times a model has been fine-tuned"
+    ],
+    "correct": 1,
+    "explanation": "Token counting matters for three reasons: cost (you pay per input/output token), context limits (exceeding the window truncates information), and response planning (reserving enough tokens for the model's answer within the total window)."
+  },
+  {
+    "question": "What is AWS IAM Identity Center (formerly AWS SSO) used for in a landing zone?",
+    "options": [
+      "Managing API keys for programmatic access to AWS services",
+      "Providing centralised single sign-on access to multiple AWS accounts and applications with federated identity",
+      "Creating and managing EC2 instance profiles",
+      "Generating temporary credentials for cross-account Lambda functions"
+    ],
+    "correct": 1,
+    "explanation": "IAM Identity Center provides a single place to manage workforce access across all AWS accounts in the organisation. Users sign in once and can access permitted accounts via permission sets — integrating with external identity providers like Azure AD or Okta."
+  },
+  {
+    "question": "What is 'agentic AI' and how does it differ from simple chatbot interactions?",
+    "options": [
+      "Agentic AI uses a different model architecture than chatbots",
+      "Agentic AI can autonomously plan, use tools, make decisions, and execute multi-step workflows rather than just responding to single prompts",
+      "Agentic AI only works offline without internet connectivity",
+      "Agentic AI requires human approval for every single action it takes"
+    ],
+    "correct": 1,
+    "explanation": "Agentic AI goes beyond Q&A — it can decompose complex tasks, decide which tools to use, execute actions, evaluate results, and iterate. Think of it as an AI that can 'do things' rather than just 'say things' — orchestrating workflows autonomously."
+  },
+  {
+    "question": "What is the purpose of 'denied topics' in Amazon Bedrock Guardrails?",
+    "options": [
+      "To prevent the model from using certain words in its vocabulary",
+      "To define specific subjects the model must refuse to engage with, regardless of how the user phrases the request",
+      "To block certain IP addresses from accessing the Bedrock API",
+      "To prevent specific users from invoking certain models"
+    ],
+    "correct": 1,
+    "explanation": "Denied topics let you define subjects (with natural language descriptions and example phrases) that the model must refuse to discuss. For example, a financial services bot might deny topics about specific stock recommendations or competitor products."
+  },
+  {
+    "question": "What is 'cross-account access' in AWS and why is it important for landing zones?",
+    "options": [
+      "Allowing users from different companies to share a single AWS account",
+      "Enabling controlled access between AWS accounts using IAM roles, allowing centralised services to operate across the organisation without sharing credentials",
+      "Copying data between accounts using S3 replication",
+      "Merging multiple AWS accounts into a single consolidated account"
+    ],
+    "correct": 1,
+    "explanation": "Cross-account access via IAM role assumption lets centralised services (security scanning, log collection, deployment pipelines) operate across accounts without long-lived credentials. It's fundamental to how LZA's centralised services function across the organisation."
+  },
+  {
+    "question": "What is 'latency' in the context of LLM inference and why does it matter?",
+    "options": [
+      "The time between model training runs",
+      "The delay between sending a request and receiving the first token of the response, affecting user experience in real-time applications",
+      "The geographic distance between the user and the data centre",
+      "The time it takes to deploy a new model version"
+    ],
+    "correct": 1,
+    "explanation": "Inference latency includes network time, queue wait, and model processing. For interactive applications (chatbots, copilots), high latency degrades user experience. Techniques like streaming, caching, model selection, and provisioned throughput help reduce it."
+  },
+  {
+    "question": "What is the difference between 'symmetric' and 'asymmetric' encryption in AWS KMS?",
+    "options": [
+      "Symmetric is faster but less secure; asymmetric is slower but more secure",
+      "Symmetric uses one key for both encryption and decryption; asymmetric uses a public key to encrypt and a private key to decrypt",
+      "Symmetric only works with S3; asymmetric works with all services",
+      "Symmetric keys expire after 90 days; asymmetric keys never expire"
+    ],
+    "correct": 1,
+    "explanation": "Symmetric KMS keys (AES-256) use the same key for encrypt/decrypt — ideal for server-side encryption where AWS manages the key. Asymmetric keys (RSA/ECC) have public/private pairs — useful for client-side encryption or digital signatures where the encryptor shouldn't be able to decrypt."
+  },
+  {
+    "question": "In a RAG system, what is 'retrieval relevance' and why is it critical?",
+    "options": [
+      "The speed at which documents are retrieved from storage",
+      "How well the retrieved document chunks actually relate to and answer the user's query — directly impacting response quality",
+      "The number of documents stored in the vector database",
+      "The format compatibility between retrieved documents and the model"
+    ],
+    "correct": 1,
+    "explanation": "Retrieval relevance determines RAG quality. If irrelevant chunks are retrieved, the model either ignores them (wasting context) or generates incorrect answers based on unrelated information. Improving chunking, embeddings, and retrieval strategies directly improves output quality."
+  },
+  {
+    "question": "What is AWS Organizations and what role does it play in LZA?",
+    "options": [
+      "A service for managing employee directories and org charts",
+      "A service that centrally manages multiple AWS accounts with hierarchical OUs, consolidated billing, and policy-based governance",
+      "A project management tool for tracking cloud migration progress",
+      "A marketplace for purchasing third-party AWS solutions"
+    ],
+    "correct": 1,
+    "explanation": "AWS Organizations is the foundation of LZA — it provides the multi-account structure with organizational units (OUs), enables Service Control Policies for governance, consolidates billing, and allows automated account provisioning through the organisation hierarchy."
+  }
+]
