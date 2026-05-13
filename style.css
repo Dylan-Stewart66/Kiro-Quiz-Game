@@ -54,8 +54,13 @@ body {
   gap: 0.6rem;
 }
 
+.site-logo {
+  display: flex;
+  justify-content: center;
+}
+
 .site-logo svg {
-  width: 44px;
+  width: 120px;
   height: auto;
   display: block;
 }
@@ -66,6 +71,14 @@ body {
   color: var(--navy);
   letter-spacing: -0.02em;
   margin: 0;
+}
+
+.card-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 .site-footer {
@@ -134,18 +147,6 @@ h3 {
 }
 
 /* === Landing Page === */
-.landing-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.brand-parent {
-  font-size: 0.8rem;
-  color: var(--grey-dark);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
 .landing-description {
   font-size: 1rem;
   color: var(--grey-dark);
